@@ -12,9 +12,14 @@ jobs:
         uses: actions/checkout@v4
 
       # Git LFS
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+      #- name: Create LFS file list
+      #  run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
+      - name: Create LFS file list
+        shell: powershell  # 改為 Windows PowerShell
+        run: |
+          git lfs ls-files -l | ForEach-Object { ($_ -split '\s+')[0] } | Sort-Object | Out-File -Encoding UTF8 .lfs-assets-id
+      
       - name: Restore LFS cache
         uses: actions/cache@v3
         id: lfs-cache
