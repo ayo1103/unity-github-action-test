@@ -1,0 +1,37 @@
+root = true
+
+# Rules applicable to all C# files
+[*.cs]
+formatters = uncrustify, generic
+
+#### Indentation Rules ####
+indent_style = space # Use spaces instead of tabs for indentation
+indent_size = 4 # Indent with 4 spaces
+tab_width = 4 # Display a tab as 4 spaces wide
+csharp_indent_block_contents = true # Indent contents of blocks (e.g., methods, properties, control blocks)
+csharp_indent_braces = false # Braces should not be indented; align with the previous line of code
+csharp_indent_case_contents = true # Indent contents of cases within a switch statement
+csharp_indent_case_contents_when_block = false # Indent contents when a case contains a block
+csharp_indent_switch_labels = true # Indent case and default labels in switch statements
+csharp_indent_labels = flush_left # Do not indent labels (e.g., in goto statements); align them to the left
+ 
+#### Spacing Rules ####
+csharp_space_after_cast = false # Do not add a space after type casts
+csharp_space_after_keywords_in_control_flow_statements = true # Add a space after control flow keywords (e.g., if, for, while)
+csharp_space_after_comma = true # Add a space after commas
+csharp_space_before_colon_in_inheritance_clause = true # Add a space before a colon in inheritance clauses
+csharp_space_after_colon_in_inheritance_clause = true # Add a space after a colon in inheritance clauses
+csharp_space_around_binary_operators = before_and_after # Add a space before and after binary operators
+
+#### Braces and Newline Rules ####
+csharp_new_line_before_open_brace = all # Place open braces on a new line for methods, properties, control blocks, and types
+csharp_new_line_before_else = true # Place 'else' statements on a new line
+csharp_new_line_before_catch = true # Place 'catch' statements on a new line
+csharp_new_line_before_finally = true # Place 'finally' statements on a new line
+csharp_new_line_before_members_in_anonymous_types = true # Place each member in anonymous types on a new line
+csharp_new_line_between_query_expression_clauses = true # Place each clause in query expressions on a new line
+
+#### Other Settings ####
+csharp_using_directive_placement = outside_namespace # Place 'using' directives outside the namespace
+csharp_preserve_single_line_blocks = true # Preserve single-line code blocks
+csharp_preserve_single_line_statements = true # Preserve single-line statements
