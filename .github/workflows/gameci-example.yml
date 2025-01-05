@@ -47,14 +47,22 @@ jobs:
       #     githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: WebGL
+      - name: Build Unity project
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/github/workspace \
+            -w /github/workspace \
+            -e UNITY_LICENSE="${{ secrets.UNITY_LICENSE }}" \
+            -e UNITY_EMAIL="${{ secrets.UNITY_EMAIL }}" \
+            -e UNITY_PASSWORD="${{ secrets.UNITY_PASSWORD }}" \
+            unityci/editor:ubuntu-2022.3.55f1-windows-mono-3.1.0 \
+            /opt/unity/Editor/Unity \
+              -batchmode \
+              -nographics \
+              -projectPath /github/workspace \
+              -buildTarget StandaloneWindows64 \
+              -outputPath /github/workspace/build \
+              -quit
 
       # Output
       - uses: actions/upload-artifact@v3
